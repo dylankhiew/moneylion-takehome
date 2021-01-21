@@ -1,47 +1,49 @@
 import React from 'react';
-import { 
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect
-} from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-
+import Input from './../components/Input';
+import ButtonArea from './../components/ButtonArea';
 
 export default function Personal(props) {
+
   return (
-    <div>
-      <h1>Personal Page</h1>
+    <div className="container">
+      <div className="screen-box">
 
-      <label>First Name</label>
-      <input
-        type="text"
-        name="firstName"
-        value={props.user.firstName}
-        onChange={props.handleChange}
-      />
+        <div className="screen-main-header">
+          Create your Account
+        </div>
 
-      <label>Last Name</label>
-      <input
-        type="text"
-        name="lastName"
-        value={props.user.lastName}
-        onChange={props.handleChange}
-      />
-      <label>E-mail</label>
-      <input
-        type="text"
-        name="Email"
-        value={props.user.Email}
-        onChange={props.handleChange}
-      />
-      <Link to="/welcome">
-        <Button variant="contained" color="primary">Back</Button>
-      </Link>
-      <Link to="/dob">
-        <Button variant="contained" color="primary">Proceed</Button>
-      </Link>
+        <Input 
+          type="text" 
+          title="First Name" 
+          name="firstName" 
+          value={props.user.firstName} 
+          handleChange={props.handleChange} 
+        />
+
+        <Input 
+          type="text" 
+          title="Last Name" 
+          name="lastName" 
+          value={props.user.lastName} 
+          handleChange={props.handleChange} 
+        />
+
+        <Input 
+          type="text" 
+          title="Email" 
+          name="Email" 
+          value={props.user.Email} 
+          handleChange={props.handleChange} 
+        />
+
+        <ButtonArea 
+          to="/dob" 
+          title="Proceed"
+          handleClick={props.handleClick}
+        />
+
+      </div>
     </div>
+    
   )
 }

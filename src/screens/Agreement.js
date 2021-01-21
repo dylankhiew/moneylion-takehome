@@ -1,39 +1,40 @@
 import React from 'react';
-import { 
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect
-} from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import ButtonArea from './../components/ButtonArea';
+import Input from './../components/Input';
 
 export default function Agreement(props) {
   return (
-    <div>
-      <h1>Agreement</h1>
-      <input 
-        type="checkbox"
-        name="agreement1"
-        checked={props.user.agreement1}
-        value={props.user.agreement1}
-        onChange={props.handleChange}
-      />
-      <label>Agree</label>
-      <br />
-      <input 
-        type="checkbox"
-        name="agreement2"
-        checked={props.user.agreement2}
-        value={props.user.agreement2}
-        onChange={props.handleChange}
-      />
-      <label>Agree</label>
-      <br />
-      <Link to="/dob">
-        <Button variant="contained" color="primary">Back</Button>
-      </Link>
-      <Button variant="contained" color="primary" onClick={props.handleSubmit}>Complete Sign Up</Button>
-    </div>
+      <div className="container">
+        <div className="screen-box">
+          <div className="screen-main-header">
+            Agreement
+          </div>
+
+          <Input 
+            type="checkbox"
+            title="Agreement 1"
+            name="agreement1"
+            value={props.user.agreement1}
+            handleChange={props.handleChange}
+            checked={props.user.agreement1}
+          />
+
+          <Input 
+            type="checkbox"
+            title="Agreement 2"
+            name="agreement2"
+            value={props.user.agreement2}
+            handleChange={props.handleChange}
+            checked={props.user.agreement2}
+          />
+
+          <ButtonArea
+            to="#"
+            title="Submit"
+            handleClick={props.handleSubmit}
+          />
+
+        </div>
+      </div>
   )
 }
