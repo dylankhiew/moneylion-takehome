@@ -1,15 +1,14 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import Input from './../components/Input';
-import ButtonArea from './../components/ButtonArea';
+import Button from '../components/Button';
+import BackButton from './../components/BackButton';
+import ScreenHeader from './../components/ScreenHeader';
 
 export default function DateOfBirth(props) {
   return (
     <div className="container">
       <div className="screen-box">
-        <div className="screen-main-header">
-          Date of Birth
-        </div>
+        <ScreenHeader title="What's your date of birth?" />
 
         <Input 
           type="date" 
@@ -19,11 +18,21 @@ export default function DateOfBirth(props) {
           handleChange={props.handleChange} 
         />
 
-        <ButtonArea 
+        <Button
           to="/agreement" 
-          title="Proceed" 
+          title="Continue"
+          name="dobButton"
+          handleClick={props.handleClick}
+          disabled={props.status.disDob}
+        />
+
+        <BackButton
+          to="/personal" 
+          title="Back"
+          name="backButton"
           handleClick={props.handleClick}
         />
+
       </div>
     </div>
   )

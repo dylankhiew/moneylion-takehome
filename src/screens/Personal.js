@@ -1,6 +1,8 @@
 import React from 'react';
 import Input from './../components/Input';
-import ButtonArea from './../components/ButtonArea';
+import Button from '../components/Button';
+import BackButton from './../components/BackButton';
+import ScreenHeader from './../components/ScreenHeader';
 
 export default function Personal(props) {
 
@@ -8,9 +10,7 @@ export default function Personal(props) {
     <div className="container">
       <div className="screen-box">
 
-        <div className="screen-main-header">
-          Create your Account
-        </div>
+        <ScreenHeader title="Create your account" />
 
         <Input 
           type="text" 
@@ -36,9 +36,18 @@ export default function Personal(props) {
           handleChange={props.handleChange} 
         />
 
-        <ButtonArea 
+        <Button
           to="/dob" 
-          title="Proceed"
+          title="Continue"
+          name="personalButton"
+          disabled={props.status.disPersonal}
+          handleClick={props.handleClick}
+        />
+
+        <BackButton
+          to="/welcome" 
+          title="Back"
+          name="backButton"
           handleClick={props.handleClick}
         />
 

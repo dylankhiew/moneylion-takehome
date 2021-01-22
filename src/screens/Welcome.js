@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
-import StyledButton from './../components/StyledButton';
 
 export default function Welcome(props) {
   return (
@@ -15,7 +13,7 @@ export default function Welcome(props) {
           </div>
         <div className="screen-next-button">
           <Link to="/personal" style={{ textDecoration: 'none' }}>
-            <StyledButton onClick={props.handleClick}>Get Started</StyledButton>
+            <button name="welcomeButton" className="screen-button" onClick={props.handleClick}>Apply Now</button>
           </Link>
         </div>
       </div>
