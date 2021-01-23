@@ -3,6 +3,7 @@ import Button from '../components/Button';
 import InputCheckBox from './../components/InputCheckBox';
 import BackButton from './../components/BackButton';
 import ScreenHeader from './../components/ScreenHeader';
+import Spacing from './../components/Spacing';
 
 export default function Agreement(props) {
 
@@ -47,7 +48,11 @@ export default function Agreement(props) {
             checked={props.user.agreement2}
           />
 
-          <Button
+          <Spacing />
+
+        </div>
+
+         <Button
             to="#"
             title="Agree &amp; Create Account"
             handleClick={props.handleSubmit}
@@ -60,8 +65,6 @@ export default function Agreement(props) {
             name="backButton"
             handleClick={props.handleClick}
           />
-
-        </div>
       </div>
   )
 }

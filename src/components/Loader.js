@@ -5,22 +5,30 @@ export default function Loader(props) {
 
     var loaderStyle;
 
-    if (props.step === 0){
-        loaderStyle = {
-            width:'0%'
-        }
-    } else if (props.step === 1){
-        loaderStyle = {
-            width:'33%'
-        }
-    } else if (props.step === 2) {
-        loaderStyle = {
-            width:'66%'
-        }
-    } else if (props.step === 3) {
-        loaderStyle = {
-            width:'100%'
-        }
+    switch (props.path) {
+        case "/welcome":
+            loaderStyle = {
+                width:'0%'
+            }
+            break;
+        case "/personal":
+            loaderStyle = {
+                width:'33%'
+            }
+            break;
+        case "/dob":
+            loaderStyle = {
+                width:'66%'
+            }
+            break;
+        case "/agreement":
+            loaderStyle = {
+                width:'100%'
+            }
+            break;
+    
+        default:
+            break;
     }
 
     return (

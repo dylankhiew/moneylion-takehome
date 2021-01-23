@@ -3,6 +3,7 @@ import Input from './../components/Input';
 import Button from '../components/Button';
 import BackButton from './../components/BackButton';
 import ScreenHeader from './../components/ScreenHeader';
+import Spacing from './../components/Spacing';
 
 export default function DateOfBirth(props) {
   return (
@@ -15,10 +16,17 @@ export default function DateOfBirth(props) {
           title="Date of Birth" 
           name="dob" 
           value={props.user.dob} 
-          handleChange={props.handleChange} 
+          handleChange={props.handleChange}
+          placeholder="MM/DD/YYYY"
         />
 
-        <Button
+        <Spacing />
+
+        
+
+      </div>
+
+      <Button
           to="/agreement" 
           title="Continue"
           name="dobButton"
@@ -32,8 +40,6 @@ export default function DateOfBirth(props) {
           name="backButton"
           handleClick={props.handleClick}
         />
-
-      </div>
     </div>
   )
 }

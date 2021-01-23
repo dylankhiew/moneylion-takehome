@@ -9,6 +9,7 @@ export default function Input(props) {
         name={props.name}
         value={props.value}
         onChange={props.handleChange}
+        placeholder={props.placeholder}
       />
     </div>
   )

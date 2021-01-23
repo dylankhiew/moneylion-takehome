@@ -3,6 +3,7 @@ import Input from './../components/Input';
 import Button from '../components/Button';
 import BackButton from './../components/BackButton';
 import ScreenHeader from './../components/ScreenHeader';
+import Spacing from './../components/Spacing';
 
 export default function Personal(props) {
 
@@ -36,7 +37,12 @@ export default function Personal(props) {
           handleChange={props.handleChange} 
         />
 
-        <Button
+        <Spacing />
+
+        
+      </div>
+
+      <Button
           to="/dob" 
           title="Continue"
           name="personalButton"
@@ -51,7 +57,6 @@ export default function Personal(props) {
           handleClick={props.handleClick}
         />
 
-      </div>
     </div>
     
   )
