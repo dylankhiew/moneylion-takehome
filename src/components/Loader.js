@@ -1,5 +1,5 @@
-import React from 'react'
-import './Loader.css'
+import React from 'react';
+import './Loader.css';
 
 export default function Loader(props) {
 
@@ -30,7 +30,7 @@ export default function Loader(props) {
         default:
             break;
     }
-
+    
     return (
         <div style={loaderStyle} className="loader"></div>
     )

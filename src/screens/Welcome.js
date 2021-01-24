@@ -1,27 +1,49 @@
-import React, { useContext } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
-import Spacing from './../components/Spacing';
+import React, { useContext, useEffect } from 'react';
+import Button from '../components/Button';
 import ScreenHeader from './../components/ScreenHeader';
+import ScreenSmallHeader from './../components/ScreenSmallHeader';
+import StatusContext from './../components/status-context';
+import {useLocation} from 'react-router-dom';
+import Container from './../components/Container';
+import Spacing from './../components/Spacing';
 
-export default function Welcome(props) {
+export default function Welcome() {
+
+  const { setStatus } = useContext(StatusContext);
+  let location = useLocation();
+  
+  const handleClick = () => {
+    setStatus(prevStatus => ({
+      ...prevStatus,
+      isStarted: true
+    }));
+  }
+
+  useEffect(() => {
+    setStatus(prevStatus => ({
+        ...prevStatus,
+        currentPath: location.pathname
+      }))
+  }, [])
 
   return (
-    <div className="container">
-      <div className="screen-box">
-        <ScreenHeader title="Say Hello to Savety" />
-        <div className="screen-small-header">
-            Finance tracking has never been easier, join our community of zero users and start saving now.
-            Don't worry, your data is safe with us (you wish!)
-        </div>
+    <Container>
+      <ScreenHeader>
+        Say Hello to Savety
+      </ScreenHeader>
 
-        <Spacing />
-        
-      </div>
-      <div className="screen-next-button">
-          <Link to="/personal" style={{ textDecoration: 'none' }}>
-            <button name="welcomeButton" className="screen-button" onClick={props.handleClick}>Apply Now</button>
-          </Link>
-        </div>
-    </div>
+      <ScreenSmallHeader>
+        Finance tracking has never been easier, join our community of zero users and start saving now.
+        Don't worry, your data is safe with us (you wish!)
+      </ScreenSmallHeader>
+
+      <Spacing />
+
+      <Button
+        to="/personal"
+        title="Apply Now"
+        handleClick={handleClick}
+      />
+    </Container>
   )
 }
