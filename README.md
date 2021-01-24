@@ -16,3 +16,9 @@ The onboarding flow consists of 4 screens:
 ## Live Demo
 
 The live demo of the website can be found [here](http://takehome.khiew.com).
+
+## Libraries
+
+- Create React App
+- React Router
+- Axios
