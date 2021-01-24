@@ -8,7 +8,6 @@ export default function BackButton(props) {
             <button 
                 name={props.name} 
                 className="screen-button-back" 
-                onClick={props.handleClick}
             >
                 {props.title}
             </button>

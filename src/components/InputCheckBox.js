@@ -3,7 +3,7 @@ import React from 'react';
 export default function InputCheckBox(props) {
 
   const agreementComponent = props.agreement.map((agree,index) => {
-    return <div key={index} className="terms-row"><a href={agree.link} target="_blank" className="terms-link">{agree.name}</a></div>
+    return <div key={index} className="terms-row"><a href={agree.link} target="_blank" rel="noopener" className="terms-link">{agree.name}</a></div>
   });
   
   return (
