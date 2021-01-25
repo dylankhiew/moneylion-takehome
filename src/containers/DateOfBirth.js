@@ -1,41 +1,39 @@
 import React, { useContext, useEffect } from 'react';
-import Input from './../components/Input';
+import Input from '../components/Input';
 import Button from '../components/Button';
-import BackButton from './../components/BackButton';
+import BackButton from '../components/BackButton';
 import ScreenHeader from './../components/ScreenHeader';
 import Spacing from './../components/Spacing';
-import UserContext from './../components/user-context';
-import StatusContext from './../components/status-context';
-import {useLocation} from 'react-router-dom';
-import Container from './../components/Container';
-
+import SignupContext from '../components/signup-context';
+import Container from '../components/Container';
+import ls from 'local-storage';
 
 export default function DateOfBirth(props) {
 
-  const { user } = useContext(UserContext);
-  const { status, setStatus } = useContext(StatusContext);
-  let location = useLocation();
+  const { signup, setSignup } = useContext(SignupContext);
 
+  //Check value of date of birth 
   useEffect(() => {
-    if (user.dob !== ""){
-      setStatus(prevStatus => ({
-      ...prevStatus,
-        disDob: false
+    if (signup.user.dob !== ""){
+      setSignup(prevSignup => ({
+        ...prevSignup,
+        status: {
+          ...prevSignup.status,
+          disDob: false
+        }
       }))
     } else {
-      setStatus(prevStatus => ({
-      ...prevStatus,
-        disDob: true
+      setSignup(prevSignup => ({
+        ...prevSignup,
+        status: {
+          ...prevSignup.status,
+          disDob: true
+        }
       }))
     }
-  }, [user.dob])
 
-  useEffect(() => {
-    setStatus(prevStatus => ({
-        ...prevStatus,
-        currentPath: location.pathname
-      }))
-  }, [])
+    ls.set('signupObject', JSON.stringify(signup))
+  }, [signup.user.dob])
 
   return (
     <Container>
@@ -47,7 +45,7 @@ export default function DateOfBirth(props) {
           type="date" 
           title="Date of Birth" 
           name="dob" 
-          value={user.dob} 
+          value={signup.user.dob} 
           handleChange={props.handleChange}
           placeholder="MM/DD/YYYY"
         />
@@ -58,7 +56,7 @@ export default function DateOfBirth(props) {
           to="/agreement" 
           title="Continue"
           name="dobButton"
-          disabled={status.disDob}
+          disabled={signup.status.disDob}
         />
 
         <BackButton

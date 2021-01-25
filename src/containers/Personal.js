@@ -1,42 +1,41 @@
 import React, { useContext, useEffect } from 'react';
-import Input from './../components/Input';
+import Input from '../components/Input';
 import Button from '../components/Button';
-import BackButton from './../components/BackButton';
-import ScreenHeader from './../components/ScreenHeader';
-import Spacing from './../components/Spacing';
-import UserContext from './../components/user-context';
-import StatusContext from './../components/status-context';
-import {useLocation } from 'react-router-dom'
-import Container from './../components/Container';
+import BackButton from '../components/BackButton';
+import ScreenHeader from '../components/ScreenHeader';
+import Spacing from '../components/Spacing';
+import SignupContext from '../components/signup-context';
+import Container from '../components/Container';
+import ls from 'local-storage';
 
 export default function Personal(props) {
 
-  const { user } = useContext(UserContext);
-  const { status, setStatus } = useContext(StatusContext);
-  let location = useLocation();
+  const { signup, setSignup } = useContext(SignupContext);
 
+  //Check value of input
   useEffect(() => {
     var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
 
-    if (user.lastName !== "" && user.firstName !== "" && pattern.test(user.Email)){
-      setStatus(prevStatus => ({
-        ...prevStatus,
-        disPersonal: false
+    if (signup.user.lastName !== "" && signup.user.firstName !== "" && pattern.test(signup.user.Email)){
+      setSignup(prevSignup => ({
+        ...prevSignup,
+        status: {
+          ...prevSignup.status,
+            disPersonal:false
+          }
       }))
     } else {
-      setStatus(prevStatus => ({
-        ...prevStatus,
-        disPersonal: true
+      setSignup(prevSignup => ({
+        ...prevSignup,
+        status: {
+          ...prevSignup.status,
+            disPersonal:true
+          }
       }))
     }
-  }, [user.lastName, user.firstName, user.Email])
 
-  useEffect(() => {
-    setStatus(prevStatus => ({
-        ...prevStatus,
-        currentPath: location.pathname
-      }))
-  }, [])
+    ls.set('signupObject', JSON.stringify(signup))
+  }, [signup.user.lastName, signup.user.firstName, signup.user.Email])
 
   return (
     <Container>
@@ -48,7 +47,7 @@ export default function Personal(props) {
         type="text" 
         title="First Name" 
         name="firstName" 
-        value={user.firstName} 
+        value={signup.user.firstName} 
         handleChange={props.handleChange} 
       />
 
@@ -56,7 +55,7 @@ export default function Personal(props) {
         type="text" 
         title="Last Name" 
         name="lastName" 
-        value={user.lastName} 
+        value={signup.user.lastName} 
         handleChange={props.handleChange} 
       />
 
@@ -64,7 +63,7 @@ export default function Personal(props) {
         type="text" 
         title="Email" 
         name="Email" 
-        value={user.Email} 
+        value={signup.user.Email} 
         handleChange={props.handleChange} 
       />
 
@@ -74,7 +73,7 @@ export default function Personal(props) {
         to="/dob" 
         title="Continue"
         name="personalButton"
-        disabled={status.disPersonal}
+        disabled={signup.status.disPersonal}
       />
 
       <BackButton

@@ -27,9 +27,11 @@ The live demo of the website can be found [here](http://takehome.khiew.com).
 
 1. Clone the git repo.
 2. Run the below to get necessary libraries:
+
 ```sh
 npm install
 ```
+
 3. To start the project:
 ```sh
 npm start
