@@ -33,7 +33,6 @@ npm install
 ```
 
 3. To start the project:
-
 ```sh
 npm start
 ```
